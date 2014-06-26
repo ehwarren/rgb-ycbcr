@@ -21,10 +21,24 @@ for h = 1:3
         end
     end
 end
+fid = fopen('../data/output_int.dat');
+tmp = fread(fid,'int32');
+k=1;
+for h = 1:3
+    for i = 1:1920
+        for j = 1:1080 
+            im_int(j,i,h) = uint8(tmp(k)/16);
+            k=k+1;
+        end
+    end
+end
 rgb_im = ycbcr2rgb(im);
-subplot(3,1,1), subimage(rgb_im);
+subplot(2,2,2), subimage(rgb_im);
 title('Converted BACK to RGB');
-subplot(3,1,2),imshow(im);
+subplot(2,2,1),imshow(im);
 title('TO YCbCr');
-subplot(3,1,3),imshow(im_orig);
-title('Original');
+subplot(2,2,3),imshow(im_int);
+title('TO YCbCr(INTEGER)');
+rgb_im_int = ycbcr2rgb(im_int);
+subplot(2,2,4),imshow(rgb_im_int);
+title('Converted BACK to RGB (INTEGER)');

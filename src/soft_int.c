@@ -2,6 +2,7 @@
 
 #define imWidth 1920
 #define imHeight 1080
+#define scaleFactor 1
 
 void loadNextRGB();
 void writeNextYCbCr();
@@ -12,7 +13,7 @@ void checkThresholds();
 char imageRGB[imWidth*imHeight*3]; 	//each pixel has one byte per color channel, and 3 color channels
 int imageYcBcR[imWidth*imHeight*3];	//holder for output image
 
-char r,g,b;				//Initial RGB image will be stored as byte, no need for floating point
+int r,g,b;				//Initial RGB image will be stored as byte, no need for floating point
 int y, cr, cb;				//Storage for current y,cr,and cb values
 int curByte = 0;			//Counter to know which byte to load from image file
 int i, j;
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]){
 			loadNextRGB();
 			//scaling factor will be 2^-4
 			//y = 16.0 + 0.257 * r + 0.504 * g + 0.098 * b;	
-			y = 256 + 4 * r + 8 * g + 2 * b; 
+			y = 256 + 4 * r + 8 * g + 2 * b; 	
 			//cb = 128.0 - 0.148 * r - 0.291* g + 0.439 * b;
 			cb = 2048 - 2 * r - 5 * g + 7 * b;
 			//cr = 128.0 + 0.439 * r - 0.368 * g - 0.071 * b;
@@ -75,7 +76,7 @@ void writeFile(char *fname){
 	if(!fPtr){
 		printf("Failed to open output image binary file");
 	}
-	fwrite(imageYcBcR,sizeof(char),sizeof(imageRGB),fPtr);
+	fwrite(imageYcBcR,4,sizeof(imageRGB),fPtr);
 	fclose(fPtr);
 }
 
@@ -91,8 +92,8 @@ void writeNextYCbCr(){
 //R0 R1 RN G0 G1 GN B0 B1 BN ... where each is one byte in length
 //Loads next RGB values and increments byte counter
 void loadNextRGB(){
-	r = imageRGB[curByte];
-	g = imageRGB[curByte+(imWidth*imHeight)];
-	b = imageRGB[curByte+(imWidth*imHeight*2)];
+	r = imageRGB[curByte]*scaleFactor;
+	g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
+	b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
 	curByte++;
 }
