@@ -21,7 +21,7 @@ for h = 1:3
         end
     end
 end
-fid = fopen('../data/output_int.dat');
+fid = fopen('../data/output_int_ARM.dat');
 tmp = fread(fid,'int32');
 k=1;
 for h = 1:3
@@ -36,9 +36,9 @@ rgb_im = ycbcr2rgb(im);
 subplot(2,2,2), subimage(rgb_im);
 title('Converted BACK to RGB');
 subplot(2,2,1),imshow(im);
-title('TO YCbCr');
+title('TO YCbCr (FLOAT)');
 subplot(2,2,3),imshow(im_int);
-title('TO YCbCr(INTEGER)');
+title('TO YCbCr(INTEGER ARM)');
 rgb_im_int = ycbcr2rgb(im_int);
 subplot(2,2,4),imshow(rgb_im_int);
-title('Converted BACK to RGB (INTEGER)');
+title('Converted BACK to RGB (INTEGER ARM)');
