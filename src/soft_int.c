@@ -4,6 +4,8 @@
 #define imHeight 1080
 #define scaleFactor 1
 
+#define DEBUG 0
+
 void loadNextRGB();
 void writeNextYCbCr();
 void loadFile();
@@ -23,6 +25,7 @@ int i, j;
 int main(int argc, char *argv[]){
 	printf("Loading file: %s \n", argv[1]);
 	loadFile(argv[1]);		//Load file into imageRGB array;
+	printf("Sizeof(char)",sizeof(imageRGB[0]));
 	for(i=0; i<imWidth; i++){
 		for ( j=0; j<imHeight; j++){
 			loadNextRGB();
@@ -35,6 +38,10 @@ int main(int argc, char *argv[]){
 			cr = 2048 + 7 * r - 6 * g - b;
 			checkThresholds();
 			writeNextYCbCr();
+		}
+		if(DEBUG){
+			printf("R: %i, G: %i, B: %i", r,g,b);
+			printf("Y: %i, Cb: %i, Cr: %i", y, cb, cr);
 		}
 	}
 	writeFile(argv[2]);		//Write converted image to binary file
