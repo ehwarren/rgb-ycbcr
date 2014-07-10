@@ -4,7 +4,7 @@
 #define imHeight 1080
 #define scaleFactor 1
 
-#define DEBUG 1
+#define DEBUG 0
 
 void loadNextRGB();
 void writeNextYCbCr();
