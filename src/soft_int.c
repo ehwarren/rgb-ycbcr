@@ -4,7 +4,7 @@
 #define imHeight 1080
 #define scaleFactor 1
 
-#define DEBUG 0
+#define DEBUG 1
 
 void loadNextRGB();
 void writeNextYCbCr();
@@ -40,8 +40,8 @@ int main(int argc, char *argv[]){
 			writeNextYCbCr();
 		}
 		if(DEBUG){
-			printf("R: %i, G: %i, B: %i", r,g,b);
-			printf("Y: %i, Cb: %i, Cr: %i", y, cb, cr);
+			printf("R: %i, G: %i, B: %i \n", r,g,b);
+			printf("Y: %i, Cb: %i, Cr: %i \n", y, cb, cr);
 		}
 	}
 	writeFile(argv[2]);		//Write converted image to binary file
