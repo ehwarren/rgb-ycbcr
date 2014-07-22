@@ -25,7 +25,6 @@ int i, j;
 int main(int argc, char *argv[]){
 	printf("Loading file: %s \n", argv[1]);
 	loadFile(argv[1]);		//Load file into imageRGB array;
-	printf("Sizeof(char)",sizeof(imageRGB[0]));
 	for(i=0; i<imWidth; i++){
 		for ( j=0; j<imHeight; j++){
 			loadNextRGB();
