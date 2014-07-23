@@ -154,7 +154,7 @@ Disassembly of section .text:
   40065b:	48 8b 00             	mov    (%rax),%rax
   40065e:	48 89 c7             	mov    %rax,%rdi
   400661:	e8 e0 01 00 00       	callq  400846 <loadFile>
-  400666:	c7 05 14 a6 fa 01 00 	movl   $0x0,0x1faa614(%rip)        # 23aac84 <i>
+  400666:	c7 05 84 68 11 04 00 	movl   $0x0,0x4116884(%rip)        # 4516ef4 <i>
   40066d:	00 00 00 
   400670:	e9 f5 00 00 00       	jmpq   40076a <main+0x146>
   400675:	c7 05 e5 09 20 00 00 	movl   $0x0,0x2009e5(%rip)        # 601064 <j>
@@ -164,21 +164,21 @@ Disassembly of section .text:
   400689:	e8 dc 02 00 00       	callq  40096a <loadNextRGB>
   40068e:	8b 05 d4 09 20 00    	mov    0x2009d4(%rip),%eax        # 601068 <r>
   400694:	8d 50 40             	lea    0x40(%rax),%edx
-  400697:	8b 05 e3 a5 fa 01    	mov    0x1faa5e3(%rip),%eax        # 23aac80 <g>
+  400697:	8b 05 53 68 11 04    	mov    0x4116853(%rip),%eax        # 4516ef0 <g>
   40069d:	01 c0                	add    %eax,%eax
   40069f:	01 d0                	add    %edx,%eax
   4006a1:	8d 14 00             	lea    (%rax,%rax,1),%edx
   4006a4:	8b 05 b6 09 20 00    	mov    0x2009b6(%rip),%eax        # 601060 <b>
   4006aa:	01 d0                	add    %edx,%eax
   4006ac:	01 c0                	add    %eax,%eax
-  4006ae:	89 05 d4 a5 fa 01    	mov    %eax,0x1faa5d4(%rip)        # 23aac88 <y>
+  4006ae:	89 05 44 68 11 04    	mov    %eax,0x4116844(%rip)        # 4516ef8 <y>
   4006b4:	8b 05 ae 09 20 00    	mov    0x2009ae(%rip),%eax        # 601068 <r>
   4006ba:	ba 00 04 00 00       	mov    $0x400,%edx
   4006bf:	89 d1                	mov    %edx,%ecx
   4006c1:	29 c1                	sub    %eax,%ecx
   4006c3:	89 c8                	mov    %ecx,%eax
   4006c5:	8d 0c 00             	lea    (%rax,%rax,1),%ecx
-  4006c8:	8b 15 b2 a5 fa 01    	mov    0x1faa5b2(%rip),%edx        # 23aac80 <g>
+  4006c8:	8b 15 22 68 11 04    	mov    0x4116822(%rip),%edx        # 4516ef0 <g>
   4006ce:	89 d0                	mov    %edx,%eax
   4006d0:	c1 e0 02             	shl    $0x2,%eax
   4006d3:	01 d0                	add    %edx,%eax
@@ -195,7 +195,7 @@ Disassembly of section .text:
   4006f6:	c1 e0 03             	shl    $0x3,%eax
   4006f9:	89 c1                	mov    %eax,%ecx
   4006fb:	29 d1                	sub    %edx,%ecx
-  4006fd:	8b 15 7d a5 fa 01    	mov    0x1faa57d(%rip),%edx        # 23aac80 <g>
+  4006fd:	8b 15 ed 67 11 04    	mov    0x41167ed(%rip),%edx        # 4516ef0 <g>
   400703:	89 d0                	mov    %edx,%eax
   400705:	01 c0                	add    %eax,%eax
   400707:	01 d0                	add    %edx,%eax
@@ -216,13 +216,13 @@ Disassembly of section .text:
   400741:	83 c0 01             	add    $0x1,%eax
   400744:	89 05 1a 09 20 00    	mov    %eax,0x20091a(%rip)        # 601064 <j>
   40074a:	8b 05 14 09 20 00    	mov    0x200914(%rip),%eax        # 601064 <j>
-  400750:	3d 37 04 00 00       	cmp    $0x437,%eax
+  400750:	3d 26 06 00 00       	cmp    $0x626,%eax
   400755:	0f 8e 29 ff ff ff    	jle    400684 <main+0x60>
-  40075b:	8b 05 23 a5 fa 01    	mov    0x1faa523(%rip),%eax        # 23aac84 <i>
+  40075b:	8b 05 93 67 11 04    	mov    0x4116793(%rip),%eax        # 4516ef4 <i>
   400761:	83 c0 01             	add    $0x1,%eax
-  400764:	89 05 1a a5 fa 01    	mov    %eax,0x1faa51a(%rip)        # 23aac84 <i>
-  40076a:	8b 05 14 a5 fa 01    	mov    0x1faa514(%rip),%eax        # 23aac84 <i>
-  400770:	3d 7f 07 00 00       	cmp    $0x77f,%eax
+  400764:	89 05 8a 67 11 04    	mov    %eax,0x411678a(%rip)        # 4516ef4 <i>
+  40076a:	8b 05 84 67 11 04    	mov    0x4116784(%rip),%eax        # 4516ef4 <i>
+  400770:	3d ef 0a 00 00       	cmp    $0xaef,%eax
   400775:	0f 8e fa fe ff ff    	jle    400675 <main+0x51>
   40077b:	48 8b 45 f0          	mov    -0x10(%rbp),%rax
   40077f:	48 83 c0 10          	add    $0x10,%rax
@@ -243,16 +243,16 @@ Disassembly of section .text:
 00000000004007b0 <checkThresholds>:
   4007b0:	55                   	push   %rbp
   4007b1:	48 89 e5             	mov    %rsp,%rbp
-  4007b4:	8b 05 ce a4 fa 01    	mov    0x1faa4ce(%rip),%eax        # 23aac88 <y>
+  4007b4:	8b 05 3e 67 11 04    	mov    0x411673e(%rip),%eax        # 4516ef8 <y>
   4007ba:	3d ff 00 00 00       	cmp    $0xff,%eax
   4007bf:	7f 0c                	jg     4007cd <checkThresholds+0x1d>
-  4007c1:	c7 05 bd a4 fa 01 00 	movl   $0x100,0x1faa4bd(%rip)        # 23aac88 <y>
+  4007c1:	c7 05 2d 67 11 04 00 	movl   $0x100,0x411672d(%rip)        # 4516ef8 <y>
   4007c8:	01 00 00 
   4007cb:	eb 17                	jmp    4007e4 <checkThresholds+0x34>
-  4007cd:	8b 05 b5 a4 fa 01    	mov    0x1faa4b5(%rip),%eax        # 23aac88 <y>
+  4007cd:	8b 05 25 67 11 04    	mov    0x4116725(%rip),%eax        # 4516ef8 <y>
   4007d3:	3d b0 0e 00 00       	cmp    $0xeb0,%eax
   4007d8:	7e 0a                	jle    4007e4 <checkThresholds+0x34>
-  4007da:	c7 05 a4 a4 fa 01 b0 	movl   $0xeb0,0x1faa4a4(%rip)        # 23aac88 <y>
+  4007da:	c7 05 14 67 11 04 b0 	movl   $0xeb0,0x4116714(%rip)        # 4516ef8 <y>
   4007e1:	0e 00 00 
   4007e4:	8b 05 82 08 20 00    	mov    0x200882(%rip),%eax        # 60106c <cb>
   4007ea:	3d ff 00 00 00       	cmp    $0xff,%eax
@@ -296,10 +296,10 @@ Disassembly of section .text:
   400876:	48 89 c7             	mov    %rax,%rdi
   400879:	b8 00 00 00 00       	mov    $0x0,%eax
   40087e:	e8 7d fc ff ff       	callq  400500 <printf@plt>
-  400883:	b8 80 c0 db 01       	mov    $0x1dbc080,%eax
+  400883:	b8 40 8f 87 03       	mov    $0x3878f40,%eax
   400888:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
   40088c:	48 89 d1             	mov    %rdx,%rcx
-  40088f:	ba 00 ec 5e 00       	mov    $0x5eec00,%edx
+  40088f:	ba b0 df c9 00       	mov    $0xc9dfb0,%edx
   400894:	be 01 00 00 00       	mov    $0x1,%esi
   400899:	48 89 c7             	mov    %rax,%rdi
   40089c:	e8 3f fc ff ff       	callq  4004e0 <fread@plt>
@@ -329,7 +329,7 @@ Disassembly of section .text:
   4008ec:	b8 80 10 60 00       	mov    $0x601080,%eax
   4008f1:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
   4008f5:	48 89 d1             	mov    %rdx,%rcx
-  4008f8:	ba 00 ec 5e 00       	mov    $0x5eec00,%edx
+  4008f8:	ba b0 df c9 00       	mov    $0xc9dfb0,%edx
   4008fd:	be 04 00 00 00       	mov    $0x4,%esi
   400902:	48 89 c7             	mov    %rax,%rdi
   400905:	e8 26 fc ff ff       	callq  400530 <fwrite@plt>
@@ -344,16 +344,16 @@ Disassembly of section .text:
   400919:	48 89 e5             	mov    %rsp,%rbp
   40091c:	8b 05 2e 07 20 00    	mov    0x20072e(%rip),%eax        # 601050 <curByte>
   400922:	83 e8 01             	sub    $0x1,%eax
-  400925:	8b 15 5d a3 fa 01    	mov    0x1faa35d(%rip),%edx        # 23aac88 <y>
+  400925:	8b 15 cd 65 11 04    	mov    0x41165cd(%rip),%edx        # 4516ef8 <y>
   40092b:	48 98                	cltq   
   40092d:	89 14 85 80 10 60 00 	mov    %edx,0x601080(,%rax,4)
   400934:	8b 05 16 07 20 00    	mov    0x200716(%rip),%eax        # 601050 <curByte>
-  40093a:	05 ff a3 1f 00       	add    $0x1fa3ff,%eax
+  40093a:	05 8f 4a 43 00       	add    $0x434a8f,%eax
   40093f:	8b 15 27 07 20 00    	mov    0x200727(%rip),%edx        # 60106c <cb>
   400945:	48 98                	cltq   
   400947:	89 14 85 80 10 60 00 	mov    %edx,0x601080(,%rax,4)
   40094e:	8b 05 fc 06 20 00    	mov    0x2006fc(%rip),%eax        # 601050 <curByte>
-  400954:	05 ff 47 3f 00       	add    $0x3f47ff,%eax
+  400954:	05 1f 95 86 00       	add    $0x86951f,%eax
   400959:	8b 15 11 07 20 00    	mov    0x200711(%rip),%edx        # 601070 <cr>
   40095f:	48 98                	cltq   
   400961:	89 14 85 80 10 60 00 	mov    %edx,0x601080(,%rax,4)
@@ -365,19 +365,19 @@ Disassembly of section .text:
   40096b:	48 89 e5             	mov    %rsp,%rbp
   40096e:	8b 05 dc 06 20 00    	mov    0x2006dc(%rip),%eax        # 601050 <curByte>
   400974:	48 98                	cltq   
-  400976:	0f b6 80 80 c0 db 01 	movzbl 0x1dbc080(%rax),%eax
+  400976:	0f b6 80 40 8f 87 03 	movzbl 0x3878f40(%rax),%eax
   40097d:	0f be c0             	movsbl %al,%eax
   400980:	89 05 e2 06 20 00    	mov    %eax,0x2006e2(%rip)        # 601068 <r>
   400986:	8b 05 c4 06 20 00    	mov    0x2006c4(%rip),%eax        # 601050 <curByte>
-  40098c:	05 00 a4 1f 00       	add    $0x1fa400,%eax
+  40098c:	05 90 4a 43 00       	add    $0x434a90,%eax
   400991:	48 98                	cltq   
-  400993:	0f b6 80 80 c0 db 01 	movzbl 0x1dbc080(%rax),%eax
+  400993:	0f b6 80 40 8f 87 03 	movzbl 0x3878f40(%rax),%eax
   40099a:	0f be c0             	movsbl %al,%eax
-  40099d:	89 05 dd a2 fa 01    	mov    %eax,0x1faa2dd(%rip)        # 23aac80 <g>
+  40099d:	89 05 4d 65 11 04    	mov    %eax,0x411654d(%rip)        # 4516ef0 <g>
   4009a3:	8b 05 a7 06 20 00    	mov    0x2006a7(%rip),%eax        # 601050 <curByte>
-  4009a9:	05 00 48 3f 00       	add    $0x3f4800,%eax
+  4009a9:	05 20 95 86 00       	add    $0x869520,%eax
   4009ae:	48 98                	cltq   
-  4009b0:	0f b6 80 80 c0 db 01 	movzbl 0x1dbc080(%rax),%eax
+  4009b0:	0f b6 80 40 8f 87 03 	movzbl 0x3878f40(%rax),%eax
   4009b7:	0f be c0             	movsbl %al,%eax
   4009ba:	89 05 a0 06 20 00    	mov    %eax,0x2006a0(%rip)        # 601060 <b>
   4009c0:	8b 05 8a 06 20 00    	mov    0x20068a(%rip),%eax        # 601050 <curByte>

@@ -1,7 +1,7 @@
 #include<stdio.h>
 
-#define imWidth 1920
-#define imHeight 1080
+#define imWidth 2800
+#define imHeight 1575
 #define scaleFactor 1
 
 #define DEBUG 0
