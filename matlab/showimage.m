@@ -25,8 +25,8 @@ fid = fopen('../data/output_int_ARM.dat');
 tmp = fread(fid,'int32');
 k=1;
 for h = 1:3
-    for i = 1:1920
-        for j = 1:1080 
+    for i = 1:2800
+        for j = 1:1575 
             im_int(j,i,h) = uint8(tmp(k)/16);
             k=k+1;
         end
