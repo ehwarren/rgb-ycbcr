@@ -38,22 +38,17 @@ END rgbtest;
 ARCHITECTURE behavior OF rgbtest IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
- 
     COMPONENT rgbycbcr
     PORT(
          compact_in : IN  std_logic_vector(31 downto 0);
          compact_out : OUT  std_logic_vector(31 downto 0)
         );
     END COMPONENT;
-    
 
    --Inputs
    signal compact_in : std_logic_vector(31 downto 0) := (others => '0');
-
  	--Outputs
    signal compact_out : std_logic_vector(31 downto 0);
-   -- No clocks detected in port list. Replace <clock> below with 
-   -- appropriate port name 
  
 BEGIN
  
@@ -69,17 +64,37 @@ BEGIN
       -- hold reset state for 100 ns.
       wait for 100 ns;	
 
-
-      -- insert stimulus here
-		compact_in <= "00000000111111111111111111111111";
-		wait for 40 ns;
+		compact_in <= "00000000111111111111111111111111"; 			--(00 FF FF FF)
+		-- Expected output: "0000 0000 1110 1011 1000 0000 1000 0000" (00 EB 80 80)
+		wait for 10 ns;
 		
-		--compact_in <= "00000000 11111111 11111111 11111111";
-		compact_in <= "00000000000000000000000000000000";
-		wait for 40 ns;
+		compact_in <= "00000000000000000000000000000000";			--(00 00 00 00)
+		-- Expected output: "0000 0000 0001 0000 1000 0000 1000 0000" (00 10 80 80)
+		wait for 10 ns;
 		
-		compact_in <= "00000000100001111100010110010101";
-		wait for 40 ns;
+		compact_in <= "00000000100001111100010110010101";			--(00 87 C5 95)
+		-- Expected output: "0000 0000 1010 0110 0111 0010 0110 0111" (00 A6 72 67)
+		wait for 10 ns;
+		
+		compact_in <= "00000000010000001010011111000011";			--(00 40 A7 C3)
+		-- Expected output: "0000 0000 1000 1011 1001 1001 0101 0001" (00 8B 99 51)
+		wait for 10 ns;
+		
+		compact_in <= "00000000000000000000000011111111";			--(00 00 00 FF)
+		-- Expected output: "0000 0000 0010 1111 1110 1111 0111 0000" (00 2F EF 70)
+		wait for 10 ns;
+		
+		compact_in <= "00000000111111111111111100000000";			--(00 FF FF 00)
+		-- Expected output: "0000 0000 1100 1111 0001 0000 1000 1111" (00 CF 10 8F)
+		wait for 10 ns;
+		
+		compact_in <= "00000000000000001111111111111111";			--(00 00 FF FF)
+		-- Expected output: "0000 0000 1010 1111 1001 1111 0001 0000" (00 AF 9F 10)
+		wait for 10 ns;
+		
+		compact_in <= "00000000111111110000000000000000";			--(00 FF 00 00)
+		-- Expected output: "0000 0000 0100 1111 0110 0000 1110 1111" (00 4F 60 EF)
+		wait for 10 ns;
 
       wait;
    end process;
