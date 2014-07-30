@@ -13,7 +13,7 @@ void writeFile();
 void checkThresholds();
 
 char imageRGB[imWidth*imHeight*3]; 	//each pixel has one byte per color channel, and 3 color channels
-int imageYcBcR[imWidth*imHeight*3/2];	//holder for output image
+int imageYcBcR[imWidth*imHeight*3];	//holder for output image
 
 int r,g,b;				//Initial RGB image will be stored as byte, no need for floating point
 int y, cr, cb;				//Storage for current y,cr,and cb values
@@ -31,13 +31,13 @@ int main(int argc, char *argv[]){
 			//scaling factor will be 2^-4
 			//y = 16.0 + 0.257 * r + 0.504 * g + 0.098 * b;	
 //			y = (256 + 4 * r + 8 * g + 2 * b)/16; 	
-			y = (512 + 8 * r + 16* g + 4 * b)/32; 	
+			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
 			//cb = 128.0 - 0.148 * r - 0.291* g + 0.439 * b;
 //			cb = (2048 - 2 * r - 5 * g + 7 * b)/16;
 			//cb = (4096 - 4 * r - 10 * g + 14 * b)/32;
-			cb = (cb + (4096 - 4 * r - 10 * g + 14 * b)/32)/2;
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
 			//cr = 128.0 + 0.439 * r - 0.368 * g - 0.071 * b;
-			cr = (cr + (4096 + 14 * r - 12 * g - b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
 			checkThresholds();
 			writeNextYCbCr();
 		}
@@ -85,7 +85,7 @@ void writeFile(char *fname){
 	if(!fPtr){
 		printf("Failed to open output image binary file");
 	}
-	fwrite(imageYcBcR,4,sizeof(imageYcBcR),fPtr);
+	fwrite(imageYcBcR,4,sizeof(imageRGB)/2,fPtr);
 	fclose(fPtr);
 }
 
