@@ -32,6 +32,7 @@ for h = 1:3
         end
     end
 end
+imwrite(im_int,'../data/arm_int_ycc.jpg');
 rgb_im = ycbcr2rgb(im);
 subplot(2,2,2), subimage(rgb_im);
 title('Converted BACK to RGB');
@@ -40,5 +41,6 @@ title('TO YCbCr (FLOAT)');
 subplot(2,2,3),imshow(im_int);
 title('TO YCbCr(INTEGER ARM)');
 rgb_im_int = ycbcr2rgb(im_int);
+imwrite(rgb_im_int,'../arm_int_rgb.jpg');
 subplot(2,2,4),imshow(rgb_im_int);
 title('Converted BACK to RGB (INTEGER ARM)');
