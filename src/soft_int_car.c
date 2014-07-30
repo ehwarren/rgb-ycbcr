@@ -29,12 +29,14 @@ int main(int argc, char *argv[]){
 		for ( j=0; j<imHeight; j++){
 			loadNextRGB();
 			//scaling factor will be 2^-4
-			//y = 16.0 + 0.257 * r + 0.504 * g + 0.098 * b;	
-			y = 256 + 4 * r + 8 * g + 2 * b; 	
-			//cb = 128.0 - 0.148 * r - 0.291* g + 0.439 * b;
-			cb = 2048 - 2 * r - 5 * g + 7 * b;
-			//cr = 128.0 + 0.439 * r - 0.368 * g - 0.071 * b;
-			cr = 2048 + 7 * r - 6 * g - b;
+                        //y = 16.0 + 0.257 * r + 0.504 * g + 0.098 * b;
+//                      y = (256 + 4 * r + 8 * g + 2 * b)/16;
+                        y = (512 + 8 * r + 16* g + 4 * b)/32;
+                        //cb = 128.0 - 0.148 * r - 0.291* g + 0.439 * b;
+//                      cb = (2048 - 2 * r - 5 * g + 7 * b)/16;
+                        cb = (4096 - 4 * r - 10 * g + 14 * b)/32;
+                        //cr = 128.0 + 0.439 * r - 0.368 * g - 0.071 * b;
+                        cr = (4096 + 14 * r - 12 * g - b)/32;
 			checkThresholds();
 			writeNextYCbCr();
 		}
@@ -52,18 +54,18 @@ int main(int argc, char *argv[]){
 //cb (16 -> 240)
 //cr (16 -> 240)
 void checkThresholds(){
-	if(y < 256)
-		y = 256;
-	else if ( y > 3760)
-		y = 3760;
-	if(cb < 256)
-		cb = 256;
-	else if ( cb > 3840)
-		cb = 3840;
-	if(cr < 256)
-		cr = 256;
-	else if ( cr > 3840)
-		cr = 3840;
+ if(y < 16)
+                y = 16;
+        else if ( y > 235)
+                y = 235;
+        if(cb < 16)
+                cb = 16;
+        else if ( cb > 240)
+                cb = 240;
+        if(cr < 16)
+                cr = 16;
+        else if ( cr > 240)
+                cr = 240;
 }
 
 //Load the binary file into our image array
