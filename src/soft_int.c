@@ -52,18 +52,18 @@ int main(int argc, char *argv[]){
 //cb (16 -> 240)
 //cr (16 -> 240)
 void checkThresholds(){
-	if(y < 256)
-		y = 256;
-	else if ( y > 3760)
-		y = 3760;
-	if(cb < 256)
-		cb = 256;
-	else if ( cb > 3840)
-		cb = 3840;
-	if(cr < 256)
-		cr = 256;
-	else if ( cr > 3840)
-		cr = 3840;
+	if(y < 16)
+		y = 16;
+	else if ( y > 235)
+		y = 235;
+	if(cb < 16)
+		cb = 16;
+	else if ( cb > 240)
+		cb = 240;
+	if(cr < 16)
+		cr = 16;
+	else if ( cr > 240)
+		cr = 240;
 }
 
 //Load the binary file into our image array
