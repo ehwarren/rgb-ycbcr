@@ -98,7 +98,7 @@ void writeNextYCbCrold(){
 
 void writeNextYCbCr(){
 	imageYcBcR[curByte-1] = y;
-	if ( (i+1) % 4 == 0 ){
+	if ( j % 4 == 0 ){
 		imageYcBcR[curByte-1+(imWidth*imHeight)] = cb;
 		cb = 0;
 		imageYcBcR[curByte-1+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
