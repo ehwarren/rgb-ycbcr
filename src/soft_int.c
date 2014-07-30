@@ -34,9 +34,10 @@ int main(int argc, char *argv[]){
 			y = (512 + 8 * r + 16* g + 4 * b)/32; 	
 			//cb = 128.0 - 0.148 * r - 0.291* g + 0.439 * b;
 //			cb = (2048 - 2 * r - 5 * g + 7 * b)/16;
-			cb = (4096 - 4 * r - 10 * g + 14 * b)/32;
+			//cb = (4096 - 4 * r - 10 * g + 14 * b)/32;
+			cb = (cb + (4096 - 4 * r - 10 * g + 14 * b)/32)/2;
 			//cr = 128.0 + 0.439 * r - 0.368 * g - 0.071 * b;
-			cr = (4096 + 14 * r - 12 * g - b)/32;
+			cr = (cr + (4096 + 14 * r - 12 * g - b)/32)/2;
 			checkThresholds();
 			writeNextYCbCr();
 		}
@@ -89,10 +90,20 @@ void writeFile(char *fname){
 }
 
 //write next pixel to output image
-void writeNextYCbCr(){
+void writeNextYCbCrold(){
 	imageYcBcR[curByte-1] = y;
 	imageYcBcR[curByte-1+(imWidth*imHeight)] = cb;
 	imageYcBcR[curByte-1+(imWidth*imHeight*2)] = cr;
+}
+
+void writeNextYCbCr(){
+	imageYcBcR[curByte-1] = y;
+	if ( (i+1) % 4 == 0 ){
+		imageYcBcR[curByte-1+(imWidth*imHeight)] = cb;
+		cb = 0;
+		imageYcBcR[curByte-1+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
+		cr = 0;
+	}
 }
 	
 
