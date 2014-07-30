@@ -9,24 +9,17 @@
 void loadFile();
 void writeFile();
 
-int main(int argc, char *argv[]){
-	
-	char imageRGB[imWidth*imHeight*3]; 
-	
-	int imageYcBcR[(imWidth*imHeight*3)/2];
+char imageRGB[imWidth*imHeight*3];
+int imageYcBcR[imWidth*imHeight*3];
+
+int main(int argc,char *argv[]){
+
 	int r,g,b;
 	int y, cr, cb;				
-	int curByte = 0;
-	int i, j;
 
-	printf("Loading file: %s \n", argv[1]);
-
-	FILE *fPtr = fopen(argv[1],"rb");	//Open file for reading, binary format
-	if(!fPtr){
-		printf("SIIIIT");
-	}
-	fread(imageRGB,sizeof(char),sizeof(imageRGB),fPtr);
-	fclose(fPtr);
+	int i,j;
+	int curByte=0;
+	loadFile(argv[1]);
 	for(i=0; i<imWidth; i++){
 		for ( j=0; j<imHeight; j++){
 			//Load RGB Values
@@ -61,15 +54,31 @@ int main(int argc, char *argv[]){
 			}
 		}
 	}
-	int k = 0;
+	writeFile(argv[2]);
+}
+//Load the binary file into our image array
+void loadFile(char *fname){
+        FILE *fPtr = fopen(fname,"rb"); //Open file for reading, binary format
+        if(!fPtr){
+                printf("Failed to open image binary file");
+        }
+        fread(imageRGB,sizeof(char),sizeof(imageRGB),fPtr);
+        fclose(fPtr);
+}
+
+//write the output binary file
+void writeFile(char *fname){
+        int k = 0;
         char output[sizeof(imageRGB)/2];
-        for( k=0; k<(sizeof(imageRGB)/2); k++ ){
+        for( k=0; k<sizeof(imageRGB)/2; k++ ){
                 output[k] = (char)imageYcBcR[k];
         }
 
-        FILE *fPtrr = fopen(argv[2],"wb"); //Open file for writing, binary format
-        fwrite(output,sizeof(char),sizeof(imageRGB)/2,fPtrr);
-        fclose(fPtrr);
-	printf("Wrote Output file %s succesfully\n",argv[2]);
+        FILE *fPtr = fopen(fname,"wb"); //Open file for writing, binary format
+        if(!fPtr){
+                printf("Failed to open output image binary file");
+        }
+        fwrite(output,sizeof(char),sizeof(imageRGB)/2,fPtr);
+        fclose(fPtr);
 }
 

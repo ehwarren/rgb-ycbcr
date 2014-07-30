@@ -9,10 +9,12 @@ echo 'Running Application with Input arguments babe.dat, output.dat'
 bin/soft_float.out data/babe.dat data/output.dat
 echo 'Compiling Soft_Int'
 gcc -o bin/soft_int.out src/soft_int.c
+gcc -o bin/soft_int_opt.out src/soft_int_optimized.c
 echo 'Creating assembly file for soft_int'
 objdump -d bin/soft_int.out > src/soft_int.asm
 echo 'Running Application with Input arguments babe.dat, output_int.dat'
 bin/soft_int.out data/babe.dat data/output_int.dat
+bin/soft_int_opt.out data/babe.dat data/output_int_opt.dat
 echo 'Compiling Application for ARM architecture'
 arm-linux-gnueabi-gcc -o bin/soft_int_ARM.out -static src/soft_int.c
 arm-linux-gnueabi-gcc -o bin/soft_int_ARM_optimized.out -static src/soft_int_optimized.c
