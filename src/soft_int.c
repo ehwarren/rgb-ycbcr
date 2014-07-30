@@ -90,9 +90,9 @@ void writeNextYCbCr(){
 	imageYcBcR[curByte-1] = y;
 	if ( j % 4 == 0 ){
 		imageYcBcR[(curByte-1)/4+(imWidth*imHeight)] = cb;
-		cb = 0;
+		//cb = 0;
 		imageYcBcR[(curByte-1)/4+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
-		cr = 0;
+		//cr = 0;
 	}
 }
 	
