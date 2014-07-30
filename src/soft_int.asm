@@ -362,7 +362,7 @@ Disassembly of section .text:
   40094c:	48 8b 55 f8          	mov    -0x8(%rbp),%rdx
   400950:	48 89 d1             	mov    %rdx,%rcx
   400953:	ba 00 d8 bd 00       	mov    $0xbdd800,%edx
-  400958:	be 01 00 00 00       	mov    $0x1,%esi
+  400958:	be 04 00 00 00       	mov    $0x4,%esi
   40095d:	48 89 c7             	mov    %rax,%rdi
   400960:	e8 cb fb ff ff       	callq  400530 <fwrite@plt>
   400965:	48 8b 45 f8          	mov    -0x8(%rbp),%rax

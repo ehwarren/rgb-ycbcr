@@ -85,7 +85,7 @@ void writeFile(char *fname){
 	if(!fPtr){
 		printf("Failed to open output image binary file");
 	}
-	fwrite(imageYcBcR,sizeof(char),sizeof(imageYcBcR),fPtr);
+	fwrite(imageYcBcR,4,sizeof(imageYcBcR),fPtr);
 	fclose(fPtr);
 }
 
