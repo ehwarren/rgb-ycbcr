@@ -15,11 +15,12 @@ echo 'Running Application with Input arguments babe.dat, output_int.dat'
 bin/soft_int.out data/babe.dat data/output_int.dat
 echo 'Compiling Application for ARM architecture'
 arm-linux-gnueabi-gcc -o bin/soft_int_ARM.out -static src/soft_int.c
+arm-linux-gnueabi-gcc -o bin/soft_int_car_ARM.out -static src/soft_int_car.c
 echo 'Creating assembly file for ARM_INT'
 arm-linux-gnueabi-objdump -d bin/soft_int_ARM.out > src/soft_int_arm.asm
 echo 'Running ARM Application with Input arguments babe.dat, output_int.dat'
 qemu-arm bin/soft_int_ARM.out data/babe.dat data/output_int_ARM.dat
-qemu-arm bin/soft_int_ARM.out data/car.dat data/output_int_ARM_car.dat
+qemu-arm bin/soft_int_car_ARM.out data/car.dat data/output_int_ARM_car.dat
 echo 'Compiling Application float for ARM architecture'
 arm-linux-gnueabi-gcc -o bin/soft_float_ARM.out -static src/soft_float.c
 echo 'Creating assembly file for ARM_FLOAT'
