@@ -81,11 +81,17 @@ void loadFile(char *fname){
 
 //write the output binary file
 void writeFile(char *fname){
+	int k = 0;
+	char output[sizeof(imageRGB)/2];
+	for( k=0; k<sizeof(imageRGB)/2; k++ ){
+		output[k] = (char)imageYcBcR[k];
+	}
+		
 	FILE *fPtr = fopen(fname,"wb");	//Open file for writing, binary format
 	if(!fPtr){
 		printf("Failed to open output image binary file");
 	}
-	fwrite(imageYcBcR,4,sizeof(imageRGB)/2,fPtr);
+	fwrite(output,sizeof(char),sizeof(imageRGB)/2,fPtr);
 	fclose(fPtr);
 }
 
