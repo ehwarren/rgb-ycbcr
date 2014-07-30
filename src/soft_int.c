@@ -13,7 +13,7 @@ void writeFile();
 void checkThresholds();
 
 char imageRGB[imWidth*imHeight*3]; 	//each pixel has one byte per color channel, and 3 color channels
-int imageYcBcR[imWidth*imHeight*3];	//holder for output image
+int imageYcBcR[imWidth*imHeight*3/2];	//holder for output image
 
 int r,g,b;				//Initial RGB image will be stored as byte, no need for floating point
 int y, cr, cb;				//Storage for current y,cr,and cb values
