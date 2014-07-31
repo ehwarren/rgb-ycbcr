@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<sys/time.h>
 
 #define imWidth 1920
 #define imHeight 1080
@@ -14,6 +15,8 @@ int imageYcBcR[imWidth*imHeight*3];
 
 int main(int argc,char *argv[]){
 
+     struct timeval start, end;
+     
 	int r,g,b;
 	int y, cr, cb;				
 
@@ -21,6 +24,7 @@ int main(int argc,char *argv[]){
 	int curByte=0;
 	loadFile(argv[1]);
 //	for(i=0; i<imWidth; i++){
+   gettimeofday(&start, NULL);
 		for ( j=((imWidth*imHeight)>>2); j!=0; j--){
 			//Load RGB Values
 			r = imageRGB[curByte]*scaleFactor;
@@ -101,7 +105,10 @@ int main(int argc,char *argv[]){
 			imageYcBcR[((curByte-1)>>2)+(imWidth*imHeight)] = cb;
 			imageYcBcR[((curByte-1)>>2)+(imWidth*imHeight)+((imWidth*imHeight)>>2)] = cr;
 		}
+    gettimeofday(&end, NULL);
 	//}
+    long long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
+    printf("Main loops took: %i us\n\n\n\n",time);
 	writeFile(argv[2]);
 }
 //Load the binary file into our image array

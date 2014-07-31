@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<sys/time.h>
 
 #define imWidth 1920
 #define imHeight 1080
@@ -21,8 +22,10 @@ int curByte = 0;			//Counter to know which byte to load from image file
 int i, j;
 
 int main(int argc, char *argv[]){
+  struct timeval start, end;
 	printf("Loading file: %s \n", argv[1]);
 	loadFile(argv[1]);		//Load file into imageRGB array;
+  gettimeofday(&start, NULL);
 	for(i=0; i<imWidth; i++){
 		for ( j=0; j<imHeight; j++){
 			loadNextRGB();
@@ -37,8 +40,12 @@ int main(int argc, char *argv[]){
 			printf("Y: %i, Cb: %i, Cr: %i \n", y, cb, cr);
 		}
 	}
-	writeFile(argv[2]);		//Write converted image to binary file
+  gettimeofday(&end, NULL);
+	long long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
+  writeFile(argv[2]);		//Write converted image to binary file
 	printf("Wrote Output file %s succesfully\n",argv[2]);
+  printf("Main loops took: %i \n\n\n\n",time);
+  
 }
 
 //Check to ensure our y cb cr values are not out of thresholds

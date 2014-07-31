@@ -17,12 +17,14 @@ bin/soft_int.out data/babe.dat data/output_int.dat
 bin/soft_int_opt.out data/babe.dat data/output_int_opt.dat
 echo 'Compiling Application for ARM architecture'
 arm-linux-gcc -o bin/soft_int_ARM.out -static src/soft_int.c
+arm-linux-gcc -O3 -o bin/soft_int_ARM_gcc_opt.out -static src/soft_int.c
 arm-linux-gcc -o bin/soft_int_ARM_optimized.out -static src/soft_int_optimized.c
 arm-linux-gcc -o bin/soft_int_car_ARM.out -static src/soft_int_car.c
 echo 'Creating assembly file for ARM_INT'
 arm-linux-objdump -d bin/soft_int_ARM.out > src/soft_int_arm.asm
 echo 'Creating assembly file for ARM_INT_OPT'
 arm-linux-objdump -d bin/soft_int_ARM_optimized.out > src/soft_int_arm_opt.asm
+arm-linux-objdump -d bin/soft_int_ARM_gcc_opt.out > src/soft_int_arm_gcc_opt.asm
 echo 'Running ARM Application with Input arguments babe.dat, output_int.dat'
 qemu-arm bin/soft_int_ARM.out data/babe.dat data/output_int_ARM.dat
 qemu-arm bin/soft_int_ARM_optimized.out data/babe.dat data/output_int_ARM_optimized.dat
