@@ -46,8 +46,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
-			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
+			cb = (cb + ((4096 - 5 * r - 9 * g + 14 * b)>>5))>>1;
+			cr = (cr + ((4096 + 14 * r - 12 * g - 2 * b)>>5))>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -64,8 +64,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
-			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
+			cb = (cb + ((4096 - 5 * r - 9 * g + 14 * b)>>5))>>1;
+			cr = (cr + ((4096 + 14 * r - 12 * g - 2 * b)>>5))>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -81,8 +81,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
-			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
+			cb = (cb + ((4096 - 5 * r - 9 * g + 14 * b)>>5))>>1;
+			cr = (cr + ((4096 + 14 * r - 12 * g - 2 * b)>>5))>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -98,8 +98,8 @@ int main(int argc,char *argv[]){
 				cr = 240;
 			//Write next YcBcR Value
 			imageYcBcR[curByte-1] = y;
-			imageYcBcR[(curByte-1)/4+(imWidth*imHeight)] = cb;
-			imageYcBcR[(curByte-1)/4+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
+			imageYcBcR[((curByte-1)>>2)+(imWidth*imHeight)] = cb;
+			imageYcBcR[((curByte-1)>>2)+(imWidth*imHeight)+((imWidth*imHeight)>>2)] = cr;
 		}
 	//}
 	writeFile(argv[2]);
