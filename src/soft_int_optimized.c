@@ -21,16 +21,16 @@ int main(int argc,char *argv[]){
 	int curByte=0;
 	loadFile(argv[1]);
 //	for(i=0; i<imWidth; i++){
-		for ( j=(imWidth*imHeight/4); j!=0; j--){
+		for ( j=((imWidth*imHeight)>>2); j!=0; j--){
 			//Load RGB Values
 			r = imageRGB[curByte]*scaleFactor;
 			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
 			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
 			curByte++;
 			//Perform Conversion
-			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (4096 - 5 * r - 9 * g + 14 * b)/32;
-			cr = (4096 + 14 * r - 12 * g - b*2)/32;
+			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
+			cb = (4096 - 5 * r - 9 * g + 14 * b)>>5;
+			cr = (4096 + 14 * r - 12 * g - 2 * b)>>5;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -45,9 +45,9 @@ int main(int argc,char *argv[]){
 			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
 			curByte++;
 			//Perform Conversion
-			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
+			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
+			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -63,9 +63,9 @@ int main(int argc,char *argv[]){
 			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
 			curByte++;
 			//Perform Conversion
-			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
+			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
+			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -80,9 +80,9 @@ int main(int argc,char *argv[]){
 			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
 			curByte++;
 			//Perform Conversion
-			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
+			y = (512 + 8 * r + 16* g + 3 * b)>>5; 	
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)>>5)>>1;
+			cr = (cr + (4096 + 14 * r - 12 * g - 2 * b)>>5)>>1;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
