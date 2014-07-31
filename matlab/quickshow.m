@@ -1,4 +1,4 @@
-fid = fopen('../data/output_int_ARM_optimized.dat');
+fid = fopen('../data/output_int_ARM_NOTDOWN.dat');
 tmp = fread(fid,'uint8');
 k=1;
 for h = 1:3
@@ -19,4 +19,4 @@ for h = 1:3
         end
     end
 end
-imshow(ycbcr2rgb(im_int));
+imwrite(ycbcr2rgb(im_int),'../data/not_down_smapled_babe.jpg');

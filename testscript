@@ -1,0 +1,34 @@
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+./soft_int_ARM.out babe.dat int.dat
+
+
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+./soft_int_ARM_optimized.out babe.dat int_opt.dat
+
+
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
+./soft_int_ARM_gcc_opt.out babe.dat int_gcc_opt.dat
