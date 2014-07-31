@@ -107,7 +107,7 @@ int main(int argc,char *argv[]){
 		}
     gettimeofday(&end, NULL);
 	//}
-    long long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
+    long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
     printf("Main loops took: %i us\n\n\n\n",time);
 	writeFile(argv[2]);
 }

@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 		}
 	}
   gettimeofday(&end, NULL);
-	long long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
+	long time = (end.tv_sec * (unsigned int) 1e6 + end.tv_usec) -  (start.tv_sec * (unsigned int)1e6 + start.tv_usec);
   writeFile(argv[2]);		//Write converted image to binary file
 	printf("Wrote Output file %s succesfully\n",argv[2]);
   printf("Main loops took: %i \n\n\n\n",time);
