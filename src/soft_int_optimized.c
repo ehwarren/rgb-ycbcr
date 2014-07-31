@@ -20,8 +20,8 @@ int main(int argc,char *argv[]){
 	int i,j;
 	int curByte=0;
 	loadFile(argv[1]);
-	for(i=imWidth-1; i==0; i--){
-		for ( j=imHeight-1; j==0; j--){
+	for(i=0; i<imWidth; i++){
+		for ( j=0; j<imHeight; j++){
 			//Load RGB Values
 			r = imageRGB[curByte]*scaleFactor;
 			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
