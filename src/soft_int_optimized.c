@@ -21,7 +21,7 @@ int main(int argc,char *argv[]){
 	int curByte=0;
 	loadFile(argv[1]);
 //	for(i=0; i<imWidth; i++){
-		for ( j=(imWidth*imHeight); j==0; j-=4){
+		for ( j=(imWidth*imHeight/4); j==0; j--){
 			//Load RGB Values
 			r = imageRGB[curByte]*scaleFactor;
 			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
