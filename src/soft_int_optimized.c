@@ -20,8 +20,60 @@ int main(int argc,char *argv[]){
 	int i,j;
 	int curByte=0;
 	loadFile(argv[1]);
-	for(i=0; i<imWidth; i++){
-		for ( j=0; j<imHeight; j++){
+//	for(i=0; i<imWidth; i++){
+		for ( j=0; j<(imHeight*imHeight); j+=4){
+			//Load RGB Values
+			r = imageRGB[curByte]*scaleFactor;
+			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
+			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
+			curByte++;
+			//Perform Conversion
+			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
+			cb = (4096 - 6 * r - 9 * g + 14 * b)/32;
+			cr = (4096 + 14 * r - 11 * g - b*2)/32;
+			//Check Thresholds
+			if(y < 16)
+				y = 16;
+			else if ( y > 235)
+				y = 235;
+			//Write next YcBcR Value
+			imageYcBcR[curByte-1] = y;
+			
+			//Load RGB Values
+			r = imageRGB[curByte]*scaleFactor;
+			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
+			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
+			curByte++;
+			//Perform Conversion
+			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
+			cb = (cb + (4096 - 6 * r - 9 * g + 14 * b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 11 * g - b*2)/32)/2;
+			//Check Thresholds
+			if(y < 16)
+				y = 16;
+			else if ( y > 235)
+				y = 235;
+			//Write next YcBcR Value
+			imageYcBcR[curByte-1] = y;
+
+			
+			//Load RGB Values
+			r = imageRGB[curByte]*scaleFactor;
+			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
+			b = imageRGB[curByte+(imWidth*imHeight*2)]*scaleFactor;
+			curByte++;
+			//Perform Conversion
+			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
+			cb = (cb + (4096 - 6 * r - 9 * g + 14 * b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 11 * g - b*2)/32)/2;
+			//Check Thresholds
+			if(y < 16)
+				y = 16;
+			else if ( y > 235)
+				y = 235;
+			//Write next YcBcR Value
+			imageYcBcR[curByte-1] = y;
+
 			//Load RGB Values
 			r = imageRGB[curByte]*scaleFactor;
 			g = imageRGB[curByte+(imWidth*imHeight)]*scaleFactor;
@@ -46,12 +98,10 @@ int main(int argc,char *argv[]){
 				cr = 240;
 			//Write next YcBcR Value
 			imageYcBcR[curByte-1] = y;
-			if ( j % 4 == 0 ){
-				imageYcBcR[(curByte-1)/4+(imWidth*imHeight)] = cb;
-				imageYcBcR[(curByte-1)/4+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
-			}
+			imageYcBcR[(curByte-1)/4+(imWidth*imHeight)] = cb;
+			imageYcBcR[(curByte-1)/4+(imWidth*imHeight)+((imWidth*imHeight)/4)] = cr;
 		}
-	}
+	//}
 	writeFile(argv[2]);
 }
 //Load the binary file into our image array
