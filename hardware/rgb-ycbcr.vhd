@@ -1,21 +1,14 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
 -- Create Date:    22:15:43 07/23/2014 
--- Design Name: 
+-- Course Name: 	 SENG 440 - Embedded Systems
+-- Instructor:		 Dr. Mihai Sima
+-- Authors:			 Shane Jagdis, Austin Warren
 -- Module Name:    rgbycbcr - Behavioral 
--- Project Name: 
--- Target Devices: 
--- Tool versions: 
--- Description: 
---
--- Dependencies: 
---
--- Revision: 
--- Revision 0.01 - File Created
--- Additional Comments: 
---
+-- Description:	  Converts RGB values to YCbCr values and averages
+--						  every 4 Cb & Cr values if bit 24 of the input is
+--						  high. If bit 24 is low it still outputs the Cb &
+--						  Cr values for that input
+-- Revision 2.0 - Included downsampling
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -30,16 +23,49 @@ entity rgbycbcr is
 end rgbycbcr;
 
 architecture Behavioral of rgbycbcr is
+	signal avg_bit: STD_LOGIC;
 	signal r, g, b: STD_LOGIC_VECTOR(7 downto 0);
 	signal y, cb, cr: unsigned(7 downto 0);
 begin
 	-- Unpack the RGB values from the input
+	avg_bit <= compact_in(24);
 	r <= compact_in(23 downto 16);
 	g <= compact_in(15 downto 8);
 	b <= compact_in(7 downto 0);
 	
+			
 	-- Pack the output back into a 32 bit vector
-	compact_out <= "00000000" & STD_LOGIC_VECTOR(y) & STD_LOGIC_VECTOR(cb) & STD_LOGIC_VECTOR(cr);
+	--compact_out <= "00000000" & STD_LOGIC_VECTOR(y) & STD_LOGIC_VECTOR(cb) & STD_LOGIC_VECTOR(cr);
+	
+	pout:	process (y, cb, cr) is
+		variable cb_avg: integer := 0;
+		variable cr_avg: integer := 0;
+		variable avg_count: integer := 0;
+	begin
+		-- Add the new values to the averages and increment the avg_count
+		cb_avg := cb_avg + to_integer(cb);
+		cr_avg := cr_avg + to_integer(cr);
+		avg_count := avg_count + 1;
+		
+		-- If bit 24 of compact_in was '1'
+		if (avg_bit = '1') then
+			-- Calculate final averaged values
+			cb_avg := cb_avg / avg_count;
+			cr_avg := cr_avg / avg_count;
+			-- Pack the output back into a 32 bit vector
+			compact_out <= "00000000" & STD_LOGIC_VECTOR(y) & STD_LOGIC_VECTOR(to_unsigned(cb_avg, 8)) & STD_LOGIC_VECTOR(to_unsigned(cr_avg,8));
+			-- Reset the average variables for next iteration
+			cb_avg := 0;
+			cr_avg := 0;
+			avg_count := 0;
+			
+		-- Otherwise just put the new calculated values on output (Cb and Cr will not be used)
+		else
+			-- Pack the output back into a 32 bit vector
+			compact_out <= "00000000" & STD_LOGIC_VECTOR(y) & STD_LOGIC_VECTOR(cb) & STD_LOGIC_VECTOR(cr);
+		end if;
+	end process pout;
+
 
 	-- Process to calculate Y value if r, g, b change
 	py:	process (r, g, b) is
@@ -58,7 +84,7 @@ begin
 			y_temp := to_unsigned(235, 16);
 		end if;
 
-		y <= y_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with if statement)
+		y <= y_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with threshold check)
 	end process py;
 
 	-- Process to calculate Cb value if r, g, b change
@@ -78,7 +104,7 @@ begin
 			cb_temp := to_unsigned(240, 16);
 		end if;
 
-		cb <= cb_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with if statement)
+		cb <= cb_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with threshold check)
 	end process pcb;
 
 	-- Process to calculate Cr value if r, g, b change
@@ -98,7 +124,7 @@ begin
 			cr_temp := to_unsigned(240, 16);
 		end if;
 
-		cr <= cr_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with if statement)
+		cr <= cr_temp(7 downto 0);		-- Output value to signal y (unsafe, but acceptable with threshold check)
 	end process pcr;
 end Behavioral;
 
