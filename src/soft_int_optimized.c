@@ -29,8 +29,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (4096 - 6 * r - 9 * g + 14 * b)/32;
-			cr = (4096 + 14 * r - 11 * g - b*2)/32;
+			cb = (4096 - 5 * r - 9 * g + 14 * b)/32;
+			cr = (4096 + 14 * r - 12 * g - b*2)/32;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -46,8 +46,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 6 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 11 * g - b*2)/32)/2;
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -64,8 +64,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 6 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 11 * g - b*2)/32)/2;
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
@@ -81,8 +81,8 @@ int main(int argc,char *argv[]){
 			curByte++;
 			//Perform Conversion
 			y = (512 + 8 * r + 16* g + 3 * b)/32; 	
-			cb = (cb + (4096 - 6 * r - 9 * g + 14 * b)/32)/2;
-			cr = (cr + (4096 + 14 * r - 11 * g - b*2)/32)/2;
+			cb = (cb + (4096 - 5 * r - 9 * g + 14 * b)/32)/2;
+			cr = (cr + (4096 + 14 * r - 12 * g - b*2)/32)/2;
 			//Check Thresholds
 			if(y < 16)
 				y = 16;
