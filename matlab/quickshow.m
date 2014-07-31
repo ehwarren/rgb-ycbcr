@@ -19,3 +19,4 @@ for h = 1:3
         end
     end
 end
+imshow(ycbcr2rgb(im_int));
